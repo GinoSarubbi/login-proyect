@@ -1,0 +1,41 @@
+version: '3.21'
+
+services:
+  app:
+    container_name: php-login-app
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/var/www/html
+    ports:
+      - "8082:80"
+    depends_on:
+      - db
+    networks:
+      login-network:
+        aliases:
+          - php-app
+
+  db:
+    image: postgres:15
+    container_name: postgres-login-db
+    environment:
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: login_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    networks:
+      login-network:
+        aliases:
+          - postgres-db
+
+networks:
+  login-network:
+    name: login-net
+    driver: bridge
+    ipam:
+      driver: default
