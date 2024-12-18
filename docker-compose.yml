@@ -7,7 +7,7 @@ services:
       context: ./app
       dockerfile: Dockerfile
     volumes:
-      - ./app:/var/www/html
+      - ./app/public/:/var/www/html
     ports:
       - "8081:80" # Asegúrate de que el servidor web escuche en el puerto 80 en el contenedor
     depends_on:

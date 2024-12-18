@@ -16,22 +16,21 @@ $usuario = $_POST['usuario'];
 $contrasena = $_POST['contrasena'];
 
 // Verificar las credenciales en la base de datos
-$query = $db->prepare('SELECT * FROM usuarios WHERE usuario = :usuario AND contrasena = MD5(:contrasena)');
+$query = $db->prepare('SELECT contrasena, usuario FROM usuarios WHERE usuario = :usuario');
 $query->execute([
-    ':usuario' => $usuario,
-    ':contrasena' => $contrasena
+    ':usuario' => $usuario
 ]);
 
+$pass_hash = $query->fetch(PDO::FETCH_ASSOC);
+
 // Si el usuario y la contraseña son correctos
-$user = $query->fetch(PDO::FETCH_ASSOC);
-if ($user) {
-    $_SESSION['nombre'] = $user['nombre'];
+ if (password_verify($contrasena, $pass_hash['contrasena'])) {
+    $_SESSION['nombre'] = $pass_hash['usuario'];
     header('Location: bienvenida.php'); // Redirige a la página de bienvenida
-    exit();
-} else {
-    // Si no, guarda el mensaje de error y redirige a index.php
+     exit();
+ } else {     // Si no, guarda el mensaje de error y redirige a index.php
     $_SESSION['error_message'] = 'Contraseña o usuario incorrecto.';
     header('Location: index.php');
     exit();
-}
+ }
 ?>

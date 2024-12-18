@@ -6,4 +6,4 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo pdo_pgsql
 
 # Copiar configuración de Apache (opcional)
-COPY public/ /var/www/html/public/index.php
+
