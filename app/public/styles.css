@@ -26,7 +26,7 @@ body p{
 
 body form{
     width: 500px;
-    height: 500px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -162,4 +162,20 @@ footer a:hover {
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 5px;
+}
+
+
+/*error de login*/
+
+.error-message {
+    color: #f44336;
+    padding: 3px;
+    text-align: center;
+    display: flex;
+    text-align: start;
+    font-size: 14px;
+}
+
+.contenedor-msj{
+    height: 20px;
 }
