@@ -1,4 +1,4 @@
-version: '3.21'
+version: '3.9'
 
 services:
   app:
@@ -9,13 +9,12 @@ services:
     volumes:
       - ./app:/var/www/html
     ports:
-      - "8082:80"
+      - "8081:80" # Asegúrate de que el servidor web escuche en el puerto 80 en el contenedor
     depends_on:
       - db
     networks:
-      login-network:
-        aliases:
-          - php-app
+      - login-network
+    restart: always
 
   db:
     image: postgres:15
@@ -25,17 +24,17 @@ services:
       POSTGRES_PASSWORD: "password"
       POSTGRES_DB: login_db
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - ./db:/docker-entrypoint-initdb.d
+      - db-data:/var/lib/postgresql/data
     networks:
-      login-network:
-        aliases:
-          - postgres-db
+      - login-network
+    restart: always
 
 networks:
   login-network:
-    name: login-net
     driver: bridge
-    ipam:
-      driver: default
+
+volumes:
+  db-data:

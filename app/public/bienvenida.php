@@ -10,6 +10,8 @@ if (!isset($_SESSION['nombre'])) {
 <head>
     <meta charset="UTF-8">
     <title>Bienvenida</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
     <h1>¡Hola, <?php echo htmlspecialchars($_SESSION['nombre']); ?>!</h1>

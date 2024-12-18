@@ -8,3 +8,5 @@ CREATE TABLE usuarios (
 -- Insertar un usuario para pruebas
 INSERT INTO usuarios (nombre, usuario, contrasena)
 VALUES ('Juan Pérez', 'juan', MD5('1234'));
+
+
