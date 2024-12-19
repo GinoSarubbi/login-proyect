@@ -1,9 +1,17 @@
 FROM php:8.2-apache
 
-# Instalar extensiones necesarias
+# Instalar extensiones y herramientas necesarias
 RUN apt-get update && apt-get install -y \
     libpq-dev \
+    curl \
+    git \
+    unzip \
+    nodejs \
+    npm \
     && docker-php-ext-install pdo pdo_pgsql
 
-# Copiar configuración de Apache (opcional)
+# Establecer directorio de trabajo
+WORKDIR /var/www/html
 
+# Instalar las dependencias de Node.js globalmente
+RUN npm install -g tailwindcss postcss autoprefixer

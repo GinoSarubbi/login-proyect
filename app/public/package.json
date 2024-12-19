@@ -1,0 +1,21 @@
+{
+  "name": "login-proyect",
+  "version": "1.0.0",
+  "description": "Este proyecto es un sistema básico de inicio de sesión utilizando PHP, PostgreSQL y Docker.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GinoSarubbi/login-proyect.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GinoSarubbi/login-proyect/issues"
+  },
+  "homepage": "https://github.com/GinoSarubbi/login-proyect#readme"
+}

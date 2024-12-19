@@ -7,14 +7,17 @@ services:
       context: ./app
       dockerfile: Dockerfile
     volumes:
-      - ./app/public/:/var/www/html
+      - ./app/public:/var/www/html
+      - ./app/node_modules:/var/www/html/node_modules # Cache de dependencias de Node.js
     ports:
-      - "8081:80" # Asegúrate de que el servidor web escuche en el puerto 80 en el contenedor
+      - "8081:80" # El servidor web escucha en el puerto 80 dentro del contenedor
     depends_on:
       - db
     networks:
       - login-network
     restart: always
+    stdin_open: true # Necesario para comandos interactivos
+    tty: true
 
   db:
     image: postgres:15
