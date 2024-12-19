@@ -6,34 +6,36 @@ session_start();
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href="styles.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-
-
-
-<form action="procesar_login.php" method="POST">
-    <div class="">
-        <h1 class="login-regis">Iniciar Sesión</h1>
-    </div>
-    <div>
-        <input type="text" placeholder="Ingrese su usuario..." name="usuario" id="usuario" required>
-        <input type="password" name="contrasena" id="contrasena" placeholder="Ingrese su contraseña..." required>
-        <div class="contenedor-msj">
-        <?php if (isset($_SESSION['error_message'])): ?>   
-        <div class="error-message">
-            <?php echo $_SESSION['error_message']; ?>
+    <div class="login-container">
+        <form action="procesar_login.php" method="POST" class="login-form">
+            <div class="logo">
+                <h1>TiendaMia</h1>
+            </div>
+            <h2>Ingresa a tu Cuenta</h2>
+            <p>Bienvenido! Porfavor ingresa tus credenciales</p>
+            <input type="text" class="input-field" placeholder="Enter your username" name="usuario" id="usuario" required>
+            <input type="password" class="input-field" placeholder="Enter your password" name="contrasena" id="contrasena" required>
+            
+            <div class="contenedor-msj">
+                <?php if (isset($_SESSION['error_message'])): ?>   
+                <div class="error-message">
+                    <?php echo $_SESSION['error_message']; ?>
+                </div>
+                <?php unset($_SESSION['error_message']); ?>
+                <?php endif; ?>
+            </div>
+            
+            <button type="submit" class="login-btn">Iniciar Sesion</button>
+        </form>
+        <div class="cnt-link">
+        <a class="link-register" href="./registro.php">Registrarse</a>
         </div>
-        <?php unset($_SESSION['error_message']); // Limpiar el mensaje de la sesión ?>
-    <?php endif; ?>
     </div>
-
-    </div>
-    <button type="submit">Iniciar Sesión</button>
-    <a href="./registro.php" type="submit">Registrarse</a>
-</form>
-
 </body>
 </html>
